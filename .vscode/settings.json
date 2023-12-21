@@ -1,0 +1,14 @@
+{
+	"sqltools.connections": [
+		{
+			"previewLimit": 50,
+			"server": "localhost",
+			"port": 5432,
+			"driver": "PostgreSQL",
+			"name": "asdf",
+			"database": "taskedout",
+			"username": "postgres",
+			"password": "1234"
+		}
+	]
+}
