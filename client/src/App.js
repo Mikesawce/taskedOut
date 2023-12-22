@@ -4,28 +4,58 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 import TodoList from "./components/TodoList.jsx";
+import LoginForm from "./components/LoginForm.jsx";
 
 
 const App = () => {
   const [todos, setTodos] = useState([]);
-  console.log(todos);
+  const [loggedIn, setLoggedIn] = useState(false);
+  
   useEffect(() => {
+    const apiUrl = 'http://localhost:3000/api/todos'
     const fetchTodos = async () => {
       try {
-        const res = await axios.get("/api/todos");
+        const res = await axios.get(apiUrl);
         setTodos(res.data);
       } catch (err) {
         console.error("Error finding todos", err);
       }
     };
-    console.log(todos);
-    fetchTodos();
-  }, [todos]);
 
+    fetchTodos();
+  }, []);
+
+  const handleLogin = () => {
+    setLoggedIn((prev) => !prev);
+  }
+
+  const handleLoginSubmit = async (username, password) => {
+
+    const loginUrl = 'http://localhost:3000/api/login'
+    const body = {
+      username: username,
+      password: password
+    }
+
+    try {
+      const res = await axios.post(loginUrl, body);
+      setLoggedIn(true);
+    } catch (err) {
+      console.error("Error logging in", err);
+    }
+  }
 
 	return (
     <div className="App">
-      <TodoList todos={todos} />
+      {!loggedIn ? (
+        <LoginForm handleLoginSubmit={handleLoginSubmit} />
+      ) : (
+        <>
+          <button onClick={handleLogin}>Logout</button>
+          <TodoList todos={todos} />
+        </>
+      )
+      }
     </div>
     
 	);
