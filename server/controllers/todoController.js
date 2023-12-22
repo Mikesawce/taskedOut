@@ -98,4 +98,19 @@ module.exports = {
 			next(err);
 		}
 	},
+
+	login: async (req, res, next) => {
+		const { username, password } = req.body;
+		try {
+			const user = await db("users")
+				.select("*")
+				.where({ username, password });
+			user.length > 0
+				? res.status(200).json(user)
+				: res.status(404).json({ message: `User not found` });
+		} catch (err) {
+			console.error(err);
+			next(err);
+		}
+	}
 };
