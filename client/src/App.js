@@ -10,10 +10,12 @@ import LoginForm from "./components/LoginForm.jsx";
 const App = () => {
   const [todos, setTodos] = useState([]);
   const [loggedIn, setLoggedIn] = useState(false);
+  const [user_id, setUser_id] = useState(null);
   
   useEffect(() => {
-    const apiUrl = 'http://localhost:3000/api/todos'
+
     const fetchTodos = async () => {
+      const apiUrl = `http://localhost:3000/todos/user/${user_id}`;
       try {
         const res = await axios.get(apiUrl);
         setTodos(res.data);
@@ -22,16 +24,19 @@ const App = () => {
       }
     };
 
-    fetchTodos();
-  }, []);
+    if(loggedIn && user_id) {
+      fetchTodos();
+    }
+  }, [loggedIn, user_id]);
 
-  const handleLogin = () => {
-    setLoggedIn((prev) => !prev);
+  const handleLogout = () => {
+    setLoggedIn(false);
+    console.log(loggedIn)
   }
 
   const handleLoginSubmit = async (username, password) => {
 
-    const loginUrl = 'http://localhost:3000/api/login'
+    const loginUrl = 'http://localhost:3000/login'
     const body = {
       username: username,
       password: password
@@ -39,6 +44,8 @@ const App = () => {
 
     try {
       const res = await axios.post(loginUrl, body);
+      console.log(res.data);
+      setUser_id(res.data.id);
       setLoggedIn(true);
     } catch (err) {
       console.error("Error logging in", err);
@@ -48,10 +55,12 @@ const App = () => {
 	return (
     <div className="App">
       {!loggedIn ? (
-        <LoginForm handleLoginSubmit={handleLoginSubmit} />
+        <>
+          <LoginForm handleLoginSubmit={handleLoginSubmit} />
+        </>
       ) : (
         <>
-          <button onClick={handleLogin}>Logout</button>
+          <button onClick={handleLogout}>Logout</button>
           <TodoList todos={todos} />
         </>
       )

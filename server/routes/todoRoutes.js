@@ -18,5 +18,7 @@ router.delete('/todos/:id', todoController.deleteTodo);
 router.get('/todos/sort', todoController.sortTodos);
 // Login
 router.post('/login', todoController.login);
+// Get user's todos
+router.get('/todos/user/:id/', todoController.getUserTodos);
 
 module.exports = router;

@@ -106,11 +106,24 @@ module.exports = {
 				.select("*")
 				.where({ username, password });
 			user.length > 0 && username && password
-				? res.status(200).json({ message: `User logged in` })
+				? res.status(200).json({ message: `User logged in`, id: user[0].id } )
 				: res.status(404).json({ message: `User not found` });
 		} catch (err) {
 			console.error(err);
 			next(err);
 		}
-	}
+	},
+
+	getUserTodos: async (req, res, next) => {
+		const { id } = req.params;
+		try {
+			const todos = await db("todos").select("*").where({ user_id: id }); // select * from todos where user_id = req.params.id
+			id
+				? res.status(200).json(todos)
+				: res.status(404).json({ message: `User not found` });
+		} catch (err) {
+			console.error(err);
+			next(err);
+		}
+	},
 };

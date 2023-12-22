@@ -14,7 +14,7 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, '../client/build')));
 
 // Routes
-app.use('/api', todoRoutes);
+app.use('/', todoRoutes);
 
 // Serve React app
 app.get('/', (req, res) => {
