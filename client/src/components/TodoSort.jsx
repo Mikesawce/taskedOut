@@ -1,11 +1,11 @@
-import React from "react";
+// import React from "react";
 
 
-const TodoSort = ({ onSort }) => {
+// const TodoSort = ({ onSort }) => {
 
-    return (
-        <button onClick={onSort}>Sort by Priority</button>
-    );
-};
+//     return (
+//         <button onClick={onSort}>Sort by Priority</button>
+//     );
+// };
 
-export default TodoSort;
+// export default TodoSort;
