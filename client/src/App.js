@@ -8,6 +8,7 @@ import LoginForm from "./components/LoginForm.jsx";
 
 
 const App = () => {
+
   const [todos, setTodos] = useState([]);
   const [loggedIn, setLoggedIn] = useState(false);
   const [user_id, setUser_id] = useState(null);
@@ -31,7 +32,7 @@ const App = () => {
 
   const handleLogout = () => {
     setLoggedIn(false);
-    console.log(loggedIn)
+    setUser_id(null);
   }
 
   const handleLoginSubmit = async (username, password) => {
