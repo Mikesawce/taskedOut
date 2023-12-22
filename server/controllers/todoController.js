@@ -87,5 +87,15 @@ module.exports = {
             console.error(err);
 			next(err);
 		}
-	}
+	},
+
+	sortTodos: async (req, res, next) => {
+		try {
+			const todos = await db("todos").select("*").orderBy("priority", "desc"); // select * from todos order by priority desc
+			res.status(200).json(todos);
+		} catch (err) {
+			console.error(err);
+			next(err);
+		}
+	},
 };

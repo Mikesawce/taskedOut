@@ -14,5 +14,7 @@ router.post('/todos', todoController.createTodo);
 router.patch('/todos/:id', todoController.editTodo);
 // Delete one
 router.delete('/todos/:id', todoController.deleteTodo);
+// Sort by priority
+router.get('/todos/sort', todoController.sortTodos);
 
 module.exports = router;
