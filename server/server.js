@@ -4,9 +4,7 @@ require('dotenv').config();
 const express = require('express'); 
 const app = express();
 const cors = require('cors'); 
-const knex = require('knex');
-const knexConfig = require('./knexfile.js'); 
-const db = knex(knexConfig); // This is the database connection
+const db = require('./db/db.js');
 const todoRoutes = require('./routes/todoRoutes.js');
 
 // Middleware
