@@ -105,8 +105,8 @@ module.exports = {
 			const user = await db("users")
 				.select("*")
 				.where({ username, password });
-			user.length > 0
-				? res.status(200).json(user)
+			user.length > 0 && username && password
+				? res.status(200).json({ message: `User logged in` })
 				: res.status(404).json({ message: `User not found` });
 		} catch (err) {
 			console.error(err);
