@@ -33,6 +33,7 @@ const App = () => {
   const handleLogout = () => {
     setLoggedIn(false);
     setUser_id(null);
+    console.log(loggedIn, user_id);
   }
 
   const handleLoginSubmit = async (username, password) => {
