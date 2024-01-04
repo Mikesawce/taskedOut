@@ -10,10 +10,9 @@ import Content from "./components/Content.jsx";
 const App = () => {
 	const [todos, setTodos] = useState([]);
 	const [loggedIn, setLoggedIn] = useState(false);
-  const [user_id, setUser_id] = useState(null);
-  //local state for username
-  const [username, setUsername] = useState("");
-  
+	const [user_id, setUser_id] = useState(null);
+	//local state for username
+	const [username, setUsername] = useState("");
 
 	useEffect(() => {
 		const fetchTodos = async () => {
@@ -29,27 +28,20 @@ const App = () => {
 		if (loggedIn && user_id) {
 			fetchTodos();
 		}
-  }, [loggedIn, user_id]);
-  
-  const handleDelete = async (e) => {
-    e.preventDefault();
-    console.log(e.target.id);
+	}, [loggedIn, user_id]);
 
-    try {
-        const res = await fetch(`http://localhost:3000/todos/${e.target.id}`, {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
+	const handleDelete = async (e) => {
+		const deleteUrl = `http://localhost:3000/todos/${e.target.id}`;
 
-      const data = await res.json();
-      setTodos(res.data)
-        console.log(data);
-    } catch (err) {
-        console.error(err);
-    }
-}
+		try {
+			const res = await axios.delete(deleteUrl);
+      console.log(res.data)
+      const updatedTodos = await axios.get(`http://localhost:3000/todos/user/${user_id}`)
+			setTodos(updatedTodos.data);
+		} catch (err) {
+			console.error(err);
+		}
+	};
 
 	const handleLogout = () => {
 		setLoggedIn(false);
@@ -68,17 +60,34 @@ const App = () => {
 			const res = await axios.post(loginUrl, body);
 			console.log(res.data);
 			setUser_id(res.data.id);
-      setLoggedIn(true);
-      setUsername(username);
+			setLoggedIn(true);
+			setUsername(username);
 		} catch (err) {
 			console.error("Error logging in", err);
 		}
 	};
 
+	const addTodoSubmit = async (title, description, priority) => {
+		const postUrl = "http://localhost:3000/todos";
+		const body = {
+			title: title,
+			description: description,
+			priority: priority,
+			user_id: user_id,
+		};
+
+		try {
+			const res = await axios.post(postUrl, body);
+			console.log(res.data);
+			setTodos(res.data);
+		} catch (err) {
+			console.error(err);
+		}
+	};
+
 	return (
-    <div className="App">
-      
-      {/* conditional rendering for login form */}
+		<div className="App">
+			{/* conditional rendering for login form */}
 			<div className="Header">
 				{!loggedIn ? (
 					<>
@@ -89,11 +98,17 @@ const App = () => {
 						<button onClick={handleLogout}>Logout</button>
 					</>
 				)}
-      </div>
-      
-      <Content username={username} todos={todos} loggedIn={loggedIn} handleDelete={handleDelete} />
-      <Footer />
-      
+			</div>
+
+			<Content
+				username={username}
+				todos={todos}
+				loggedIn={loggedIn}
+				handleDelete={handleDelete}
+				addTodoSubmit={addTodoSubmit}
+				user_id={user_id}
+			/>
+			<Footer />
 		</div>
 	);
 };
