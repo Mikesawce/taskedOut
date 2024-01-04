@@ -16,8 +16,7 @@ let AddTodo = ({ addTodoSubmit, user_id, setShowAddTodo }) => {
     }
 
     return (
-        <>
-            <form className='add-todo-form' onSubmit={handleAddTodo}>
+            <form className='add-todo-form' onSubmit={handleAddTodo} >
                 <label htmlFor='title'>Title</label>
                     <input type='text' id='title' value={title} onChange={e => setTitle(e.target.value)}/>
                 <label htmlFor='description'>Description</label>
@@ -26,7 +25,6 @@ let AddTodo = ({ addTodoSubmit, user_id, setShowAddTodo }) => {
                     <input type='text' id='priority' value={priority} onChange={e => setPriority(e.target.value)}/>
                 <button type='submit'>Add Todo</button>
             </form>
-        </>
     )
 }
 

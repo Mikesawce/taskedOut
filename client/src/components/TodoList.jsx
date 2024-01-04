@@ -1,5 +1,8 @@
 
-const TodoList = ({ todos, username, handleDelete }) => {
+import EditTodo from './EditTodo';
+
+const TodoList = ({ todos, username, handleDelete, editTodoSubmit }) => {
+
 
     const handleDeleteSubmit = (e) => {
         e.preventDefault();
@@ -22,6 +25,7 @@ const TodoList = ({ todos, username, handleDelete }) => {
                         <span className="title">{todo.title}</span>
                         <span className="description">{todo.description}</span>
                         <span className="priority">{todo.priority}-PlaceHolderForPriorityIcon</span>
+                        <EditTodo todoId={todo.id} editTodoSubmit={editTodoSubmit} />
                     </li>
                 ))}
             </ul>

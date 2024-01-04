@@ -54,18 +54,18 @@ ul {
 li {
     display: flex;
     flex-direction: row;
-    /* justify-content: space-between; */
-    align-items: start;
+    justify-content: space-between;
+    align-items: flex-start;
     margin-top: 15px;
 }
 
 .tableHead {
     display: flex;
     flex-direction: row;
-    /* justify-content: space-between; */
-    align-self: start;
+    justify-content: space-between;
+    align-self: flex-start;
     font-weight: bold;
-    width: 60%;
+    width: 65%;
     margin-left: 15rem;
 }
 
@@ -77,4 +77,3 @@ li {
     margin-left: 10rem;
     margin-right: 25rem;
 }
-

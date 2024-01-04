@@ -84,7 +84,26 @@ const App = () => {
 		} catch (err) {
 			console.error(err);
 		}
-	};
+  };
+  
+  const editTodoSubmit = async (title, description, priority, user_id, e) => {
+    const patchUrl = `http://localhost:3000/todos/${e.target.id}`;
+    const body = {
+      title: title,
+      description: description,
+      priority: priority,
+      user_id: user_id,
+    };
+
+    try {
+      const res = await axios.patch(patchUrl, body);
+      console.log(res.data);
+      const updatedTodos = await axios.get(`http://localhost:3000/todos/user/${user_id}`)
+      setTodos(updatedTodos.data);
+    } catch (err) {
+      console.error(err);
+    }
+  }
 
 	return (
 		<div className="App">
@@ -109,6 +128,7 @@ const App = () => {
 				addTodoSubmit={addTodoSubmit}
         user_id={user_id}
         setTodos={setTodos}
+        editTodoSubmit={editTodoSubmit}
 			/>
 			<Footer />
 		</div>
