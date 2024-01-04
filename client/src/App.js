@@ -78,8 +78,9 @@ const App = () => {
 
 		try {
 			const res = await axios.post(postUrl, body);
-			console.log(res.data);
-			setTodos(res.data);
+      console.log(res.data);
+      const updatedTodos = await axios.get(`http://localhost:3000/todos/user/${user_id}`)
+			setTodos(updatedTodos.data);
 		} catch (err) {
 			console.error(err);
 		}
