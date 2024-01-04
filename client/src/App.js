@@ -107,7 +107,8 @@ const App = () => {
 				loggedIn={loggedIn}
 				handleDelete={handleDelete}
 				addTodoSubmit={addTodoSubmit}
-				user_id={user_id}
+        user_id={user_id}
+        setTodos={setTodos}
 			/>
 			<Footer />
 		</div>

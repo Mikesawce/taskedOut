@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 
 import AddTodo from './AddTodo.jsx';
 import TodoList from './TodoList.jsx';
+import TodoSort from './TodoSort.jsx';
 
-let Content = ({ username, todos, loggedIn, handleDelete, addTodoSubmit, user_id }) => {
+let Content = ({ username, todos, setTodos, loggedIn, handleDelete, addTodoSubmit, user_id }) => {
 
     const [showAddTodo, setShowAddTodo] = useState(false);
 
@@ -14,6 +15,7 @@ let Content = ({ username, todos, loggedIn, handleDelete, addTodoSubmit, user_id
     return (
         <div className='Content'>
             {loggedIn ? <>
+                <TodoSort todos={todos} setTodos={setTodos} />
                 <TodoList todos={todos} username={username} handleDelete={handleDelete} />
                 <button className='add-todo-button' onClick={handleShowAddTodo}>Add Todo</button>
                 {showAddTodo && <AddTodo addTodoSubmit={addTodoSubmit} user_id={user_id} setShowAddTodo={setShowAddTodo} />}

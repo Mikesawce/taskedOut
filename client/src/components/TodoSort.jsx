@@ -1,11 +1,20 @@
-// import React from "react";
 
+const TodoSort = ({ todos, setTodos }) => {
+    
+        const handleSort = (e) => {
+            e.preventDefault();
+            let sortedTodos = [...todos];
+            sortedTodos.sort((a, b) => {
+                return a.priority - b.priority;
+            });
+            setTodos(sortedTodos);
+        }
+    
+        return (
+            <div className="todo-sort">
+                <button onClick={handleSort}>Sort by Priority</button>
+            </div>
+        )
+}
 
-// const TodoSort = ({ onSort }) => {
-
-//     return (
-//         <button onClick={onSort}>Sort by Priority</button>
-//     );
-// };
-
-// export default TodoSort;
+export default TodoSort;
