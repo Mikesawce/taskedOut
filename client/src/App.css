@@ -1,0 +1,56 @@
+
+.App {
+    display:flex;
+    flex-direction: column;
+}
+.Content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    height: 90vh;
+}
+
+.welcome-text {
+    font-family: 'Roboto', sans-serif;
+    font-size: 6rem;
+    color: #333;
+    line-height: 1.5;
+    letter-spacing: 1px;
+}
+
+.Header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    margin: 5px 5px 5px 5px;
+}
+
+.Footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: #545353;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    margin-top: 3px;
+}
+
+ul {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+}
+
+li {
+    display: flex;
+    flex-direction: row;
+}

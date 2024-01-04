@@ -79,12 +79,14 @@ module.exports = {
 	deleteTodo: async (req, res, next) => {
 		const { id } = req.params;
 		try {
-			const deletedTodo = await db("todos").del().where({ id }).returning("*"); // delete from todos where id = req.params.id returning *
-			id && deletedTodo.length > 0
-				? res.status(200).json({ message: `Todo deleted` })
-				: res.status(404).json({ message: `Todo not found` });
-        } catch (err) {
-            console.error(err);
+			const deletedTodo = await db("todos").del().where({ id }).returning("*");
+			if (id && deletedTodo.length > 0) {
+				res.status(200).json({ message: `Todo deleted`, deletedTodo });
+			} else {
+				res.status(404).json({ message: `Todo not found` });
+			}
+		} catch (err) {
+			console.error(err);
 			next(err);
 		}
 	},

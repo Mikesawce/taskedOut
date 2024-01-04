@@ -29,7 +29,27 @@ const App = () => {
 		if (loggedIn && user_id) {
 			fetchTodos();
 		}
-	}, [loggedIn, user_id]);
+  }, [loggedIn, user_id]);
+  
+  const handleDelete = async (e) => {
+    e.preventDefault();
+    console.log(e.target.id);
+
+    try {
+        const res = await fetch(`http://localhost:3000/todos/${e.target.id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+      const data = await res.json();
+      setTodos(res.data)
+        console.log(data);
+    } catch (err) {
+        console.error(err);
+    }
+}
 
 	const handleLogout = () => {
 		setLoggedIn(false);
@@ -58,7 +78,8 @@ const App = () => {
 	return (
     <div className="App">
       
-			<div className="header">
+      {/* conditional rendering for login form */}
+			<div className="Header">
 				{!loggedIn ? (
 					<>
 						<LoginForm handleLoginSubmit={handleLoginSubmit} />
@@ -69,9 +90,10 @@ const App = () => {
 					</>
 				)}
       </div>
-      <Content username={username} todos={todos} loggedIn={loggedIn} />
       
-			<Footer />
+      <Content username={username} todos={todos} loggedIn={loggedIn} handleDelete={handleDelete} />
+      <Footer />
+      
 		</div>
 	);
 };
