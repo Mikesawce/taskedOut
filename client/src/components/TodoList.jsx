@@ -1,10 +1,9 @@
-import React from "react";
 
-const TodoList = ({ todos }) => {
+const TodoList = ({ todos, username }) => {
 
     return (
         <>
-            <h2>Your tasks!</h2>
+            <h2>{username}'s Todos!</h2>
             <ul>
                 {todos.map(todo => (
                     <li key={todo.id} >

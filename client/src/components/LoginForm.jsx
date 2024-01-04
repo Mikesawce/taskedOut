@@ -2,13 +2,14 @@ import React, { useState } from "react";
 
 
 const LoginForm = ({ handleLoginSubmit }) => {
-
+    //local state for login form
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
     const handleLogin = (e) => {
         e.preventDefault();
-
+        
+        //pass the username and password to the handleLoginSubmit function prop
         handleLoginSubmit(username, password);
     }
     
