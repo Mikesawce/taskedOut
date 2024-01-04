@@ -8,20 +8,20 @@ const TodoList = ({ todos, username, handleDelete }) => {
 
     return (
         <>
-            <h2>{username}'s Todos!</h2>
+            <h2 style={{marginBottom: '5rem', marginTop: '-35rem'}}>{username}'s Todos!</h2>
             <div className="tableHead">
                 <span className="deleteBtn"></span>
-                <span className="Title">Title</span>
-                <span className="Description">Description</span>
-                <span className="Priority">Priority</span>
+                <span className="title">Title</span>
+                <span className="description">Description</span>
+                <span className="priority">Priority</span>
             </div>            
             <ul>
                 {todos.map(todo => (
                     <li key={todo.id}>
                         <button id={todo.id} onClick={(e) => handleDeleteSubmit(e)} className="deleteBtn">✗</button>
-                        <span className="Title">{todo.title}</span>
-                        <span className="Description">{todo.description}</span>
-                        <span className="Priority">{todo.priority}-PlaceHolderForPriorityIcon</span>
+                        <span className="title">{todo.title}</span>
+                        <span className="description">{todo.description}</span>
+                        <span className="priority">{todo.priority}-PlaceHolderForPriorityIcon</span>
                     </li>
                 ))}
             </ul>

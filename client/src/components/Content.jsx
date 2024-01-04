@@ -8,7 +8,7 @@ let Content = ({ username, todos, loggedIn, handleDelete, addTodoSubmit, user_id
     const [showAddTodo, setShowAddTodo] = useState(false);
 
     const handleShowAddTodo = () => {
-        setShowAddTodo(true);
+        setShowAddTodo(!showAddTodo);
     }
 
     return (
