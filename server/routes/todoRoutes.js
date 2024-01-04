@@ -5,20 +5,20 @@ const router = express.Router();
 const todoController = require('../controllers/todoController.js');
 
 // Get all
-router.get('/todos', todoController.getAllTodos);
+router.get('/todos', todoController.getAllTodos); // working on postman/react
 // Get one
-router.get('/todos/:id', todoController.getOneTodo);
+router.get('/todos/:id', todoController.getOneTodo); // working on postman
 // Create one
-router.post('/todos', todoController.createTodo);
+router.post('/todos', todoController.createTodo); // working on postman
 // Edit one
-router.patch('/todos/:id', todoController.editTodo);
+router.patch('/todos/:id', todoController.editTodo); // working on postman
 // Delete one
-router.delete('/todos/:id', todoController.deleteTodo);
+router.delete('/todos/:id', todoController.deleteTodo); // working on postman
 // Sort by priority
-router.get('/todos/sort', todoController.sortTodos);
+router.get('/todos/sort', todoController.sortTodos); // needs work
 // Login
-router.post('/login', todoController.login);
+router.post('/login', todoController.login);  // working on postman/react
 // Get user's todos
-router.get('/todos/user/:id/', todoController.getUserTodos);
+router.get('/todos/user/:id/', todoController.getUserTodos); // works on login
 
 module.exports = router;

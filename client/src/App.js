@@ -5,7 +5,7 @@ import axios from "axios";
 
 import TodoList from "./components/TodoList.jsx";
 import LoginForm from "./components/LoginForm.jsx";
-
+import Footer from "./components/Footer.jsx";
 
 const App = () => {
 
@@ -67,6 +67,7 @@ const App = () => {
         </>
       )
       }
+      <Footer />
     </div>
     
 	);
